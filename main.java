@@ -1,44 +1,23 @@
-package prefinal2018;
-
-import java.util.ArrayList;
+package prefinal20182;
 
 public class main {
 
 	public static void main(String[] args) {
-		Expresion e = new Expresion();
-		Numero n = new Numero(5);
-		Numero n1 = new Numero(1);
-		Numero n2= new Numero(2);
-		Numero n3 = new Numero(6);
-		Operador o = new Operador('-');
-		Operador o1 = new Operador('+');
-		Operador o2= new Operador('*');
-
-		e.add(n);
-		e.add(o);
-		e.add(n1);
-//		e.add(n2);
-//		e.add(n3);
-//		e.add(o1);
-//		e.add(o1);
-//		e.add(o2);
-
-		ArrayList<Numero> numeros = e.getNumeros();
-		for(Numero num: numeros) {
-			System.out.println(num.getValor());
-		}
-		ArrayList<Operador> operadores = e.getOperadores();
-		for(Operador op: operadores) {
-			System.out.println((char)op.getValor());
-		}
-		System.out.println(e.getResultado());
+		Valor v = new Valor(2);
+		Valor v1 = new Valor(3);
+		Valor v2 = new Valor(5);
+		Multiplicacion m = new Multiplicacion(v, v1, '*');
+		Suma s = new Suma(m, v2, '+');
+		System.out.println(s.getValor());
 		
+		Valor v3 = new Valor(7);
+		Valor v4 = new Valor(8);
 
-
-	
-
+		Suma s1 = new Suma(v3, v4, '+');
+		Resta r = new Resta(v2, v1, '-');
+		Division d = new Division(s1, r, '/');
+		System.out.println(d.getValor());
 		
-
 	}
 
 }

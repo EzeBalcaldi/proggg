@@ -1,57 +1,32 @@
-package prefinal2018;
+package prefinal20182;
 
 import java.util.ArrayList;
 
-public class Expresion  extends Cuentas{
-	private ArrayList<Cuentas> cuenta;
 
-	public Expresion() {
-		this.cuenta = new ArrayList<Cuentas>();
-	}
-
-	@Override
-	public ArrayList<Numero> getNumeros() {
-		ArrayList<Numero> aux = new ArrayList<Numero>();
-		for(Cuentas c: cuenta) {
-			aux.addAll(c.getNumeros());
-		}
-		return aux;
-	}
-	public void add(Cuentas c) {
-		cuenta.add(c);
-	}
-
-	@Override
-	public ArrayList<Operador> getOperadores() {
-		ArrayList<Operador> aux = new ArrayList<Operador>();
-		for(Cuentas c: cuenta) {
-			aux.addAll(c.getOperadores());
-		}
-		return aux;
-	}
-
-	@Override
-	public int getValor() {
-		int aux = 0;
-		for(Cuentas c: cuenta) {
-			aux = c.getValor();
-		}
-		return aux;
-	}
-
-	@Override
-	public ArrayList<Integer> getResultado() {
-		int aux1 = 0;
-		ArrayList<Integer> aux = new ArrayList<Integer>();
-		for(Cuentas c: cuenta) {
-//			aux1 = c.getValor();
-//			aux.add(aux1);
-			aux.addAll(c.getResultado());
-			
-		}
-		return aux;
-	}
-
+public abstract class Expresion extends Abstracto{
+	protected Abstracto izquierdo;
+	protected Abstracto derecho;
+	protected static double error;
 	
 	
+	public Expresion(Abstracto izquierdo, Abstracto derecho) {
+		this.izquierdo = izquierdo;
+		this.derecho = derecho;
+	}
+	public ArrayList<Valor> getNumeros() {
+		ArrayList<Valor> aux = new ArrayList<Valor>();
+		aux.addAll(izquierdo.getNumeros());
+		aux.addAll(derecho.getNumeros());
+		return aux;
+	}
+	public abstract char getOperador();
+	public abstract double getInverso();
+	public static void setError(double e){
+		error = e;
+	}
+	public String toString(){
+		return "(" + izquierdo + getOperador() + derecho + ")";
+		
+	}
+
 }
